@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'authapp'
+    'authapp',
+    'rest_framework'
 ]
 
 AUTH_USER_MODEL = 'authapp.Person'
