@@ -1,0 +1,26 @@
+[
+  {
+        "username": "Vasya",
+        "first_name": "Vasya",
+        "last_name": "Pupkin",
+        "email": "pup@gmail.com"
+    },
+    {
+        "username": "Roman",
+        "first_name": "Roman",
+        "last_name": "Rudenko",
+        "email": "rud@gmail.com"
+    },
+    {
+        "username": "Pup",
+        "first_name": "Pup",
+        "last_name": "Vasylyev",
+        "email": "vas@gmail.com"
+    },
+    {
+        "username": "user",
+        "first_name": "user",
+        "last_name": "user",
+        "email": "user@gmail.com"
+    }
+]
