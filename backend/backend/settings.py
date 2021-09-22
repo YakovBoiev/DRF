@@ -40,7 +40,9 @@ INSTALLED_APPS = [
 
     'authapp',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'todoapp'
+
 ]
 
 AUTH_USER_MODEL = 'authapp.Person'
