@@ -39,13 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'authapp',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
 
 AUTH_USER_MODEL = 'authapp.Person'
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
