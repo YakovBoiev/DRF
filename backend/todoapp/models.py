@@ -9,19 +9,19 @@ class Project(models.Model):
         unique=True,
         null=True
     )
-    repository_link = models.CharField(
-        max_length=255,
-        blank=True,
-    )
+    repository_link = models.URLField(blank=True)
     users = models.ManyToManyField(Person)
 
 
 class Todo(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    text = models.CharField(max_length=400,)
+    text = models.TextField()
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
-    user_creator = models.ForeignKey(Person, on_delete=models.SET_NULL, null=True)
-    is_active = models.BooleanField()
+    user_creator = models.ForeignKey(
+        Person,
+        on_delete=models.SET_NULL,
+        null=True)
+    is_active = models.BooleanField(default=True)
 
 
