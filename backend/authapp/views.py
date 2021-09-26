@@ -8,6 +8,6 @@ class PersonModelViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.
                          mixins.UpdateModelMixin):
     queryset = Person.objects.all()
     serializer_class = PersonModelSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+    # renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
 
