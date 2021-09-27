@@ -1,5 +1,5 @@
 from django_filters import rest_framework as filters
-from .models import Project
+from .models import Project, Todo
 
 
 class ProjectFilter(filters.FilterSet):
@@ -11,5 +11,11 @@ class ProjectFilter(filters.FilterSet):
 
 
 class TodoFilter(filters.FilterSet):
-    is_active = filters.BooleanFilter()
+    project__name = filters.CharFilter(lookup_expr='exact')
+
+    class Meta:
+        model = Todo
+        fields = ['project__name']
+
+
 
