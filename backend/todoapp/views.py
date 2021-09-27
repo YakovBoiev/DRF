@@ -6,7 +6,11 @@ from  rest_framework.pagination import LimitOffsetPagination
 
 
 class ProjectLimitOffsetPaginator(LimitOffsetPagination):
-    default_limit = 2
+    default_limit = 10
+
+
+class TodoLimitOffsetPaginator(LimitOffsetPagination):
+    default_limit = 20
 
 
 class ProjectModelViewSet(ModelViewSet):
@@ -17,12 +21,10 @@ class ProjectModelViewSet(ModelViewSet):
 
 
 class TodoModelViewSet(ModelViewSet):
-    queryset = Todo.objects.all()
+    queryset = Todo.objects.filter(is_active=True)
     serializer_class = TodoModelSerializer
     filterset_class = TodoFilter
-
-    def get_queryset(self):
-        return Todo.objects.filter(is_active=True)
+    pagination_class = TodoLimitOffsetPaginator
 
     def perform_destroy(self, instance):
         instance.is_active = False

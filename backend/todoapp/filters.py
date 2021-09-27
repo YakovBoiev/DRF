@@ -12,10 +12,12 @@ class ProjectFilter(filters.FilterSet):
 
 class TodoFilter(filters.FilterSet):
     project__name = filters.CharFilter(lookup_expr='exact')
+    create_date = filters.BaseRangeFilter(lookup_expr='range')
 
     class Meta:
         model = Todo
-        fields = ['project__name']
+        fields = ['project__name', 'create_date']
+
 
 
 
