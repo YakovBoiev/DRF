@@ -16,7 +16,7 @@ const PersonList = ({persons}) => {
         <table>
             <th>username</th>
             <th>first_name</th>
-            <th>person.last_name</th>
+            <th>last_name</th>
             <th>email</th>
             {persons.map((per) => <PersonItem person={per}/>)}
         </table>
