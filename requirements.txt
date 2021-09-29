@@ -6,3 +6,6 @@ setuptools==58.0.4
 sqlparse==0.4.2
 djangorestframework==3.12.4
 django-cors-headers==3.8.0
+django-cors-headers==3.8.0
+django-filter==21.1
+
