@@ -1,17 +1,27 @@
 import React from 'react';
-import {HashRouter, Route, Link} from 'react-router-dom'
+import {BrowserRouter, HashRouter, Route, Link, Switch, Redirect} from 'react-router-dom'
 import ProjectList from './components/Projects.js'
 import PersonList from './components/Persons.js'
+import TodoList from './components/Todo.js'
 import Menu from './components/Menu.js'
 import Footer from './components/Footer.js'
 import axios from 'axios'
+
+const NotFound404 = ({location}) => {
+    return(
+        <div>
+            <h1> Страница по адрресу '{location.pathname}' не найдена </h1>
+        </div>
+    )
+}
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             'projects' : [],
-            'persons' : []
+            'persons' : [],
+            'todo_all': [],
         }
     }
 
@@ -38,13 +48,24 @@ class App extends React.Component {
             }
         )
         .catch(error => console.log(error))
-        }
-
+        axios.get('http://127.0.0.1:8000/api/todo/')
+        .then(response => {
+                const todo_all = response.data
+                console.log(todo_all)
+                this.setState(
+                    {
+                        'todo_all': todo_all
+                    }
+                )
+            }
+        )
+        .catch(error => console.log(error))
+    }
 
     render() {
         return(
             <div>
-                <HashRouter>
+                <BrowserRouter>
                     <Menu/>
                         <nav>
                             <ul>
@@ -56,10 +77,16 @@ class App extends React.Component {
                                 </li>
                             </ul>
                         </nav>
+                        <Switch>
+                        <Route exact path='/' component={() =><ProjectList projects={this.state.projects}/>} />
                         <Route exact path='/persons' component={() =><PersonList persons={this.state.persons}/>} />
-                        <Route exact path='/projects' component={() =><ProjectList projects={this.state.projects}/>} />
+                        <Route path='/project/:id' component={() =><TodoList todo_all={this.state.todo_all}/>} />
+
+                        <Redirect from='/projects' to='/' />
+                        <Route component = {NotFound404}/>
+                        </Switch>
                         <Footer/>
-                </HashRouter>
+                </BrowserRouter>
             </div>
         )
     }
