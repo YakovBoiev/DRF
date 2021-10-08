@@ -25,8 +25,8 @@ class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/project/')
+    load_data () {
+            axios.get('http://127.0.0.1:8000/api/project/')
         .then(response => {
                 const projects = response.data
                 this.setState(
@@ -62,6 +62,10 @@ class App extends React.Component {
         .catch(error => console.log(error))
     }
 
+    componentDidMount() {
+        this.load_data()
+    }
+
     render() {
         return(
             <div>
@@ -75,6 +79,10 @@ class App extends React.Component {
                                 <li>
                                     <Link to='/projects'>Проекты</Link>
                                 </li>
+                                <li>
+                                    <Link to='/login'>Login</Link>
+                                </li>
+
                             </ul>
                         </nav>
                         <Switch>
