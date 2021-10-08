@@ -5,7 +5,7 @@ from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 
 
 class PersonModelViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin,
-                         mixins.UpdateModelMixin):
+                         mixins.UpdateModelMixin, mixins.CreateModelMixin):
     queryset = Person.objects.all()
     serializer_class = PersonModelSerializer
     # renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
