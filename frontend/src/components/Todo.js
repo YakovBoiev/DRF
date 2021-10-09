@@ -16,7 +16,6 @@ const TodoItem = ({todo}) => {
 
 const TodoList = ({todo_all}) => {
     let {id} = useParams()
-    console.log(id)
     let filtered_todo = todo_all.filter((todo) => todo.project.id == id)
     return(
         <table>
