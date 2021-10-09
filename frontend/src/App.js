@@ -6,8 +6,8 @@ import TodoList from './components/Todo.js'
 import Menu from './components/Menu.js'
 import Footer from './components/Footer.js'
 import LoginForm from './components/Auth.js'
-
 import axios from 'axios'
+
 
 const NotFound404 = ({location}) => {
     return(
@@ -24,7 +24,8 @@ class App extends React.Component {
             'projects' : [],
             'persons' : [],
             'todo_all': [],
-            'token': ''
+            'token': '',
+            'username': ''
         }
     }
 
@@ -32,7 +33,8 @@ class App extends React.Component {
         axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username, password: password})
         .then(response => {
             localStorage.setItem('token', response.data.token)
-            this.setState({'token': response.data.token}, this.load_data)
+            localStorage.setItem('username', username)
+            this.setState({'token': response.data.token, 'username': username}, this.load_data)
         })
         .catch(error => alert ('Неверный логин и пароль'))
     }
@@ -43,7 +45,8 @@ class App extends React.Component {
 
     logout(){
         localStorage.setItem('token', '')
-        this.setState({'token': ''}, this.load_data)
+        localStorage.setItem('username', '')
+        this.setState({'token': '', 'username': ''}, this.load_data)
     }
 
     get_headers(){
@@ -105,7 +108,8 @@ class App extends React.Component {
 
     componentDidMount() {
         const token = localStorage.getItem('token')
-        this.setState({'token': token}, this.load_data)
+        const username = localStorage.getItem('username')
+        this.setState({'token': token, 'username': username}, this.load_data)
     }
 
     render() {
@@ -123,7 +127,7 @@ class App extends React.Component {
                                 </li>
                                 <li>
                                     { this.is_authenticated() ?
-                                    <button onClick={()=>this.logout()}>Logout</button> :
+                                    <button onClick={()=>this.logout()}>Logout {this.state.username}</button> :
                                     <Link to='/login'>Login</Link>
                                 }
                                 </li>
