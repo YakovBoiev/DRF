@@ -61,7 +61,6 @@ REST_FRAMEWORK = {
             'rest_framework.authentication.TokenAuthentication',
         ]
 }
-
 AUTH_USER_MODEL = 'authapp.Person'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
