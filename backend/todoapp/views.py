@@ -15,7 +15,7 @@ class TodoLimitOffsetPaginator(LimitOffsetPagination):
 
 
 class ProjectModelViewSet(ModelViewSet):
-    # permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     filterset_class = ProjectFilter
@@ -23,7 +23,7 @@ class ProjectModelViewSet(ModelViewSet):
 
 
 class TodoModelViewSet(ModelViewSet):
-    # permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
     queryset = Todo.objects.filter(is_active=True)
     serializer_class = TodoModelSerializer
     filterset_class = TodoFilter
