@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'todoapp',
     'django_filters',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'drf_yasg'
 
 ]
 
@@ -59,7 +60,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
             'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
-        ]
+        ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+
 }
 AUTH_USER_MODEL = 'authapp.Person'
 CORS_ALLOWED_ORIGINS = [
