@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'todoapp',
     'django_filters',
     'rest_framework.authtoken',
-    'drf_yasg'
+    'drf_yasg',
+    "graphene_django"
 
 ]
 
@@ -68,6 +69,12 @@ AUTH_USER_MODEL = 'authapp.Person'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
+
+GRAPHENE = {
+    "SCHEMA": "backend.schema.schema"
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
