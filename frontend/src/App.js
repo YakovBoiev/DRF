@@ -65,11 +65,16 @@ class App extends React.Component {
         .catch(error => console.log(error))
   }
 
+  deleteProject(id) {
+    const headers = this.get_headers()
+    axios.delete(`http://127.0.0.1:8000/api/project/${id}`, {headers})
+        .then(response => {
+          this.setState({projects: this.state.projects.filter((item)=>item.id != id)})
+        })
+        .catch(error => console.log(error))
+  }
 
-
-
-
-    load_data () {
+   load_data () {
         const headers = this.get_headers()
          axios.get('http://127.0.0.1:8000/api/project/', {headers})
         .then(response => {
@@ -147,7 +152,7 @@ class App extends React.Component {
                             </ul>
                         </nav>
                         <Switch>
-                        <Route exact path='/' component={() =><ProjectList projects={this.state.projects}/>} />
+                        <Route exact path='/' component={() =><ProjectList projects={this.state.projects} deleteProject={(id)=>this.deleteProject(id)}/>} />
                         <Route exact path='/persons' component={() =><PersonList persons={this.state.persons}/>} />
                         <Route path='/project/:id' component={() =><TodoList todo_all={this.state.todo_all} deleteTodo={(id)=>this.deleteTodo(id)}/>} />
                         <Route exact path='/login' component={() => <LoginForm get_token={(username, password) => this.get_token(username, password)} />} />
