@@ -56,6 +56,18 @@ class App extends React.Component {
         return {}
     }
 
+  deleteTodo(id) {
+    const headers = this.get_headers()
+    axios.delete(`http://127.0.0.1:8000/api/todo/${id}`, {headers})
+        .then(response => {
+          this.setState({todo_all: this.state.todo_all.filter((item)=>item.id != id)})
+        })
+        .catch(error => console.log(error))
+  }
+
+
+
+
 
     load_data () {
         const headers = this.get_headers()
@@ -137,7 +149,7 @@ class App extends React.Component {
                         <Switch>
                         <Route exact path='/' component={() =><ProjectList projects={this.state.projects}/>} />
                         <Route exact path='/persons' component={() =><PersonList persons={this.state.persons}/>} />
-                        <Route path='/project/:id' component={() =><TodoList todo_all={this.state.todo_all}/>} />
+                        <Route path='/project/:id' component={() =><TodoList todo_all={this.state.todo_all} deleteTodo={(id)=>this.deleteTodo(id)}/>} />
                         <Route exact path='/login' component={() => <LoginForm get_token={(username, password) => this.get_token(username, password)} />} />
                         <Redirect from='/projects' to='/' />
                         <Route component = {NotFound404}/>
