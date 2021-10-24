@@ -4,7 +4,7 @@ from authapp.serializers import PersonModelSerializer
 
 
 class ProjectModelSerializer(ModelSerializer):
-    users = PersonModelSerializer(many=True)
+    # users = PersonModelSerializer(many=True)
 
     class Meta:
         model = Project

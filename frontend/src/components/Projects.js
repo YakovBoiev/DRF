@@ -13,12 +13,15 @@ const ProjectItem = ({project, deleteProject}) => {
 
 const ProjectList = ({projects, deleteProject}) => {
     return(
+        <div>
         <table>
             <th>name</th>
             <th>repository_link</th>
             <th>repository_link</th>
             {projects.map((proj) => <ProjectItem project={proj} deleteProject={deleteProject}/>)}
         </table>
+        <Link to='/projects/create/'>Create project</Link>
+        </div>
     )
 };
 
