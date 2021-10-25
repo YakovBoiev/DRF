@@ -4,7 +4,7 @@ from authapp.serializers import PersonModelSerializer
 
 
 class ProjectModelSerializer(ModelSerializer):
-    users = PersonModelSerializer(many=True)
+    # users = PersonModelSerializer(many=True)
 
     class Meta:
         model = Project
@@ -14,6 +14,13 @@ class ProjectModelSerializer(ModelSerializer):
 class TodoModelSerializer(ModelSerializer):
     project = ProjectModelSerializer()
     user_creator = PersonModelSerializer()
+
+    class Meta:
+        model = Todo
+        fields = '__all__'
+
+
+class TodoPostModelSerializer(ModelSerializer):
 
     class Meta:
         model = Todo
